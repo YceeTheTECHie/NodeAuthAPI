@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { stringify } = require("querystring");
 const { default: validator } = require("validator");
-
 const userSchema = new mongoose.Schema({
     email: {
         type: String, unique: true, lowercase: true, validate: [validator.isEmail, "Email is required   "],
