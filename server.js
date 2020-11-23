@@ -1,15 +1,15 @@
 const express = require('express');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const cors = require("cors");
 const authRoutes = require("./Routes/authRoutes");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-
-const app = express()
+const app = express();
+app.use(express.json());
 app.enable("trust proxy");
 app.use(cors({ origin: '*' }));
-app.use(bodyParser.json());
+
 
 const DB = process.env.DATABASE;
 
@@ -20,7 +20,7 @@ mongoose.connect(DB, {
 }).then(() => console.log("connected"));
 
 
-app.use('api/auth', authRoutes)
+app.use('/api/auth', authRoutes)
 
 const port = process.env.PORT || 3000;
 
