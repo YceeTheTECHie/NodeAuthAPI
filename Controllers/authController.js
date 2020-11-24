@@ -56,8 +56,8 @@ exports.login = async (req, res) => {
         const comparedPass = await bcrypt.compare(password, user.password);
         comparedPass ? sendToken(user, 200, req, res) : res.status(400).json({message:"login failed"});
     }   
-    catch (err) {
-        console.log(err);
-        res.status(400).json(err.message)
+    catch (error) {
+        console.log(error);
+        res.status(400).json(error.message)
     }
 }
